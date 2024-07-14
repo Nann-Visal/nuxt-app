@@ -8,7 +8,8 @@ export default defineNuxtConfig({
     'nuxt-icon',
     '@vueuse/nuxt',
     '@morev/vue-transitions/nuxt',
-    'nuxt-headlessui'
+    'nuxt-headlessui',
+    "@nuxt/image"
   ],
 
   tailwindcss: { exposeConfig: true },

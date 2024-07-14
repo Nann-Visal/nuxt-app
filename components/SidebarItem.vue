@@ -44,4 +44,8 @@
   const props = defineProps<{
     links? : any[]
   }>();
+
+function defineProps<T>() {
+  throw new Error("Function not implemented.");
+}
 </script>

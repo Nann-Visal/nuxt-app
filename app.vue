@@ -13,12 +13,17 @@
         <!-- start main section -->
         <main class="py-5 lg:col-span-6">
             <StatusCard />
+            <NewCustomer />
+            <SalesChart />
+            <RecentOrders />
         </main>
         <!-- end  main section -->
 
         <!-- start profile info -->
-        <div>
-          
+        <div class="hidden py-5 lg:col-span-3 lg:block">
+            <ProfileInfo />
+            <hr class="my-5" />
+            <Reminders />
         </div>
         <!-- end profile info -->
        

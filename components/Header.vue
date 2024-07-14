@@ -1,10 +1,17 @@
 <template>
-  <header  class="sticky top-0 z-20 border-b bg-background/80 backdrop-blur">
+  <header  class="sticky top-0 z-20 border-b bg-background/75 backdrop-blur">
     <div class="container flex h-16 items-center justify-between">
 
       <div class="flex items-center gap-3">
-        <img src="/icon.svg" alt="nuxt" class="h-50z object-contain " />
-        <NuxtLink  class="text-xl font-bold" to="/">Zii/Nuxt</NuxtLink>
+        <button
+            @click="isOpen = true"
+            aria-label="Open menu"
+            class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border bg-background lg:hidden"
+          > <span class="sr-only">Button used to open menu</span>
+          <Icon name="heroicons:bars-2" />
+        </button>
+        <img src="/icon.svg" alt="nuxt" class="h-7 w-7 object-contain " />
+        <NuxtLink  class="text-xl font-bold" to="/">Zii/Nuxt </NuxtLink>
       </div>
 
       <div class="flex items-center gap-5">
@@ -39,7 +46,12 @@
                 <div class="p-1">
                     <template v-for="(p,i) in profileMenuItems" :key="i">
                       <HMenuItem v-if="!p.divider" v-slot="{active}">
-                        <button :class="[active && 'bg-muted']" class="inline-flex w-full items-center rounded-md p-2 font-medium text-sm">{{ p.title }}</button>
+                        <button :class="[active && 'bg-muted']" class="inline-flex w-full items-center rounded-md p-2 font-medium text-sm">
+                          <div class="flex items-center gap-4">
+                            <Icon v-if="p.icon" :name="p.icon" class="h-5 w-5 text-muted-foreground"/>
+                            <p class="truncate">{{ p.title }}</p>
+                          </div>
+                        </button>
                       </HMenuItem>
                       <hr v-if="p.divider" class="my-1">
                     </template>
@@ -50,6 +62,7 @@
       </div>
 
     </div>
+    <MobileMenu v-model="isOpen" />
   </header>
 </template>
 
@@ -60,12 +73,14 @@
       mode.value = mode.value === 'light' ? 'dark' : 'light';
     }
     const profileMenuItems = [
-      {title : "Profile"},
-      {title : "Billing"},
-      {title : "Settings"},
-      {title : "Team members"},
-      {title : "Sales"},
+      {title : "Profile", icon: "uil:user-circle"},
+      {title : "Billing", icon: "mdi:invoice-text-send-outline"},
+      {title : "Settings", icon: "ic:round-settings"},
+      {title : "Team members", icon: "grommet-icons:group"},
+      {title : "Sales", icon: "icon-park-outline:sales-report"},
       {divider: true},
-      {title : 'Logout'}
+      {title : 'Logout', icon: "ri:logout-box-r-line"}
     ];
+
+    const isOpen = ref(false);
 </script>
